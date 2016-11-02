@@ -1,0 +1,15 @@
+/Print integers -52 to 1066 using a FOR Loop
+
+for (var x = -52; x <= 1066; x++) {
+	console.log(x);
+}
+
+/Don't Worry, Be Happy - Create beCheerful(). Within it, console.log string "good morning!" Call it 98 times.
+
+function beCheerful() {
+  console.log("good morning!");
+}
+
+for (var x = 1; x <= 98; x++) {
+  beCheerful();
+}
