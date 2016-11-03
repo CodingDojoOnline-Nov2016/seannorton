@@ -20,7 +20,7 @@ function wdyk(incoming) {
 //If a year is divisible by 4, it is a leap year, unless it is divisible by 100.
 //However, if it is divisible by 400, then it IS.
 
-//THIS DOESNT WORK WITH 400
+//THIS DOESNT WORK WITH 300
 function isleapyr(year) {
   if (year%4===0) {
     console.log(year + " is a leap year!")
@@ -40,6 +40,33 @@ function isleapyr(year) {
   }
   else if (year%4===0) {
     console.log(year + " is a leap year!")
+  }
+  else {
+    console.log(year + " is not a leap year.")
+  }
+}
+
+//Class Answer
+
+function isLeapYear(year) {
+  if(year%100===0 && year%400!===0) {
+    console.log(year +" is not a leap year.")
+  }
+  else if(year%4===0){
+    console.log(year +" is a leap year!")
+  }
+  else {
+    console.log(year +" is not a leap year.")
+  }
+}
+
+// Wes Answer, used multiple operators with parenthases?
+function isLeapYear2(year) {
+  if((year%4===0 && year%100!===0) || year%400===0){
+    console.log(year +" is a leap year!")
+  }
+  else{
+    console.log(year +" is not a leap year.")
   }
 }
 
