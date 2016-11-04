@@ -1,0 +1,93 @@
+/*I loaded up the image into photoshop amd just approximate pixel values for width/height, and hex values for colors.*/
+
+
+body {
+  background-color: #EEE;
+}
+
+h1 {
+  font-size: 30pt;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 24pt;
+}
+
+div {
+  border-radius: 30px;
+}
+
+.wrapper {
+  width: 880px;
+  margin: auto;
+}
+
+.header {
+  background-color: #DDD;
+  width: 880px;
+  height: 80px;
+  display: inline-block;
+  margin-bottom: 25px;
+}
+
+.header h1 {
+  display: inline-block;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.sidenav {
+  background-color: #DDD;
+  display: inline-block;
+  width: 210px;
+}
+
+.sidenav ul {
+  margin-left: -10px;
+}
+
+.sidenav ul ul {
+  margin-left: -30px;
+}
+
+.sidenav p {
+  margin-left: 15px;
+  margin-top: 25px;
+  line-height: 0px;
+  margin-bottom: -5px;
+}
+
+.sidenav a {
+  text-decoration: none;
+}
+
+.content {
+  background-color: #AAA;
+  width: 600px;
+  display: inline-block;
+  margin-left: 30px;
+  padding: 0px 15px;
+  vertical-align: top;
+}
+
+.content li {
+  margin-bottom: 20px;
+}
+
+.content li a:first-of-type {
+  font-weight: bold;
+}
+
+.footer {
+  margin-top: 25px;
+  background-color: #DDD;
+  width: 880px;
+  height: 60px;
+  padding-top: 10px;
+}
+
+.footer p {
+  line-height: 0px;
+  margin-left: 20px;
+}
