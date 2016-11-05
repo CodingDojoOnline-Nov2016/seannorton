@@ -1,5 +1,5 @@
 //Countdown
-//Create a function that accepts a number as an input. Return a new array that counts down by one, from that number (as array's 'zero'th element) down to 0 (as the last element). How long is the array?
+//Create a function that accepts a number as an input. *Return* a new array that counts down by one, from that number (as array's 'zero'th element) down to 0 (as the last element). How long is the array?
 
 function countdown(num) {
   var array=[]
@@ -10,12 +10,30 @@ function countdown(num) {
   console.log("The array has " + array.length + " nubmers in it.")
 }
 
+//Re-done.
+
+function countdown(num) {
+  var array=[]
+  for (var i = num; i >= 0; i--) {
+    array.push(i);
+  }
+  console.log(array);
+  console.log("The array has " + array.length + " nubmers in it.")
+}
+
+var info = countdown(11)
+
 //Print and Return
 //Your function will receive an array with two numbers. Print the first value, and return the second.
 
 function pnr(a,b) {
   console.log(a);
   return(b)
+}
+
+function pnr(arr) {
+  console.log(arr[0]);
+  return(arr[1]);
 }
 
 //First Plus length
@@ -37,7 +55,7 @@ function fpl(arr) {
 //The above doesnt seem to work.
 
 //Values greater than second
-//For [1,3,5,7,9,13], print values that are greater than its 2nd value. Return how many values this is.
+//For [1,3,5,7,9,13], print VALUES that are greater than its 2nd value. Return how many values this is.
 
 function vgt2(arr) {
   var values = 0
@@ -54,3 +72,9 @@ function vgt2(arr) {
 }
 
 vgt2([1,3,5,7,9,13])
+
+//This is wrong... the if statement has to be along the lines of...
+
+if (arr[i] > arr[1]) {
+  console.log(arr[i]);
+}
