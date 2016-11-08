@@ -1,0 +1,367 @@
+/*RESET CSS*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+  font-family: sans-serif;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*END RESET CSS*/
+
+.wrapper {
+  width: 1000px;
+  margin: auto;
+}
+
+.topcontrol {
+  width: 355px;
+  height: 25px;
+  background-color: #f9f9f9;
+  border: 1px solid #dbdbdb;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-left: 525px;
+  padding-top:2px;
+  display: inline-block;
+}
+
+.topcontrol ul li {
+  display: inline-block;
+  margin: 0px 10px 15px 0px;
+}
+
+.topcontrol ul li:first-child {
+  padding-left: 15px;
+}
+
+.topcontrol ul li:not(:first-child) {
+  border-left: 1px solid #999;
+  padding-left: 10px
+}
+
+.topcontrol ul li a {
+  color: #999;
+  font-size: 7.5pt;
+  text-decoration: none;
+}
+
+.loginbtn {
+  display: inline-block;
+  width: 60px;
+  height: 22px;
+  background-color: #0087b8;
+  border-radius: 5px;
+  margin-left: 25px;
+}
+
+.loginbtn a {
+  color: #fff;
+  font-size: 9pt;
+  padding: 5px 15px;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+.logo h1 {
+  display: inline-block;
+  font-size: 36pt;
+  color: #0087b8;
+  margin-left:12px;
+  margin-top: 5px;
+  vertical-align: top;
+}
+
+.logo h1 span {
+  color: #868686;
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+.pageheader {
+  width: inherit;
+  padding: 18px 8px;
+  font-size: 18pt;
+  font-family: sans-serif;
+  background-color: #0087b8;
+  color: white;
+}
+
+.leftcontent {
+  width: 250px;
+  height: 580px;
+  display: inline-block;
+	margin-top: 53px;
+	padding: 12px;
+}
+
+.leftcontent h2 {
+	color: #007cbc;
+	font-size: 14pt;
+	margin-bottom: 20px;
+}
+
+.leftcontent h3 {
+	color:#d83840;
+	font-size: 10pt;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.leftcontent p {
+	font-size: 10pt;
+	margin-bottom: 28px;
+	line-height: 15px;
+}
+
+.bluebtn {
+	text-align: center;
+	width: inherit;
+	height: 23px;
+	background-color: #229fdf;
+	border-radius: 5px;
+	color: white;
+	font-weight: bold;
+	padding-top: 7px;
+	margin-bottom: 5px;
+}
+
+.orangebtn {
+	text-align: center;
+	width: inherit;
+	height: 23px;
+	background-color: #ee691a;
+	border-radius: 5px;
+	color: white;
+	font-weight: bold;
+	padding-top: 7px;
+	margin-bottom: 5px;
+}
+
+.bluebtn a, .orangebtn a {
+	color: white;
+	text-decoration: none;
+}
+
+.center {
+	text-align: center;
+}
+
+.hr {
+	width: inherit;
+	height: 1px;
+	background-color: #666;
+	margin-bottom: 20px;
+}
+
+.leftad {
+	background-image: url("img/left_content_ad.png");
+	background-size: cover;
+	width: 170px;
+	height: 220px;
+	padding: 15px;
+}
+
+.leftad h2 {
+	font-weight: bold;
+	font-size: 11pt;
+}
+
+.leftad p {
+	font-weight: bold;
+	font-size: 11pt;
+	color: #555555;
+}
+
+.getgrddbtn {
+	height: 20px;
+	width: 170px;
+	border-radius: 5px;
+	background-color: #125985;
+	padding-top: 2px;
+}
+
+.getgrddbtn a {
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 11pt;
+}
+
+.content {
+	display: inline-block;
+	vertical-align: top;
+	width: 700px;
+	margin-top: 15px;
+}
+
+.topcontent {
+	height: 60px;
+}
+
+.topcontent a { /*super annoying...*/
+	display: inline-block;
+	color: #007cbc;
+	text-decoration:none;
+	vertical-align: top;
+	margin-top: 25px;
+}
+
+.callnow {
+	vertical-align:top;
+	display: inline-block;
+	width: 150px;
+	height: 55px;
+}
+
+.content img:not(:first-child) {
+	display:inline-block;
+}
+
+.pushleft390 {
+	margin-left: 390px;
+}
+
+.callnow p {
+	font-size: 8pt;
+	color: #555;
+	margin-bottom:5px;
+}
+
+.callnow h1 {
+	font-size: 18pt;
+	font-weight: bold;
+	color: #007cbc;
+}
+
+.content {
+	display: inline-block;
+	width: 650px;
+	margin-left: 30px;
+}
+
+.content h1 {
+	color: #007cbc;
+	font-weight: bold;
+	font-size: 14pt;
+}
+
+.content h2 {
+	color: #007cbc;
+	font-weight: bold;
+	font-size: 12pt;
+}
+
+.content > p {
+	font-size: 10pt;
+	line-height: 14pt;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.content ul {
+	margin-top: 20px;
+}
+
+.content ul li {
+	list-style-type: square;
+	margin: 10px 0px;
+	margin-left: 25px;
+	font-size: 10pt;
+	line-height: 14pt;
+}
+
+span.bold {
+	font-weight: bold;
+}
+
+.contentad {
+	margin: 15px 0px 15px;
+	width: 640px;
+	height: 140px;
+	border: 5px solid #83bdd5;
+}
+
+.contentad img { /*this is affecting something else...*/
+	display: inline-block;
+	vertical-align: top;
+}
+
+.contentad h1 {
+	display: inline-block;
+}
+
+.contentad p {
+	font-size: 10pt;
+	line-height: 14pt;
+	display: inline-block;
+	margin-top: 12px;
+}
+
+.contentadsidediv {
+	display:inline-block;
+	vertical-align: top;
+	width: 65px;
+	height: 145px;
+}
+
+.contentadtext {
+	display: inline-block;
+	width: 550px;
+	height: 160px;
+}
+
+.startbtn {
+	display: inline-block;
+	width: 180px;
+	height: 26px;
+	background-color: #95bc3d;
+	padding-top: 10px;
+	text-align: center;
+	border-radius: 5px;
+	margin-top: 12px;
+}
+
+.startbtn a {
+	color: white;
+	text-decoration: none;
+}
