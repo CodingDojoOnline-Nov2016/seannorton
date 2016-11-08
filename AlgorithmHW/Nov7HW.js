@@ -47,7 +47,7 @@ ftfv([2,2])
 //F = (9/5 * C) + 32
 
 function ftC(fDegrees) {
-  return ((fDegrees -32) * (5/9));
+  return ((fDegrees - 32) * (5/9));
 }
 
 var cel = ftC(32);
