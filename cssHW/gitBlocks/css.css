@@ -1,0 +1,132 @@
+/*minimal reset*/
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+/*styling*/
+
+h1, h2 {
+  color: white;
+}
+
+h1, h2, a, p {
+  font-family: monospace;
+}
+
+.wrapper {
+  width: 810px;
+  background-color: #dddfd4;
+  padding: 15px;
+  margin: auto;
+}
+
+.header {
+  width: 790px;
+}
+
+.header, .footer {
+  background-color: #3fb0ac;
+  padding: 15px 10px;
+  margin-bottom: 15px;
+}
+
+.header img {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.header h1 {
+  display: inline-block;
+  margin-left: 5px;
+  color: black;
+  margin-right: 40px;
+  vertical-align: middle;
+}
+
+.header a {
+  color: white;
+  margin: 0px 5px;
+  vertical-align: middle;
+}
+
+.content {
+  background-color: #fae596;
+  padding: 15px;
+  margin-bottom: 15px;
+  width: 780px;
+  display: inline-block;
+}
+
+.content p {
+  color: white;
+  margin: 15px;
+  font-size: 9pt;
+}
+
+.content a {
+  color: #55dbcb;
+}
+
+.content h2 {
+  margin: 10px;
+}
+
+.rightcontent {
+  display: inline-block;
+  width: 500px;
+}
+
+.whatisgit, .gitinit, .gitadd, .gitstatus, .gitcommit, .gitremoteadd, .gitpush {
+  background-color: #173f43;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.whatisgit {
+  padding: 15px 10px;
+  width: 220px;
+  height: 450px;
+  margin-right: 35px;
+  margin-bottom: 15px;
+}
+
+.gitinit, .gitadd {
+  width: 145px;
+  height: 160px;
+  margin-bottom: 25px;
+  margin-right: 25px;
+}
+
+.gitstatus {
+  width: 145px;
+  height: 160px;
+  margin-bottom: 25px;
+}
+
+.gitcommit, .gitremoteadd {
+  width: 235px;
+  height: 130px;
+  margin-bottom: 25px;
+}
+
+.gitcommit {
+  margin-right: 15px;
+}
+
+.gitpush {
+  width: 485px;
+  height: 140px;
+}
+
+.footer {
+  text-align: center;
+}
+
+.footer p {
+  vertical-align: middle;
+  color: black;
+}
