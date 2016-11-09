@@ -5,6 +5,8 @@
   font-family: sans-serif;
 	}
 
+/* look at indenting your css with your parent/child CSS relationships  */
+
 .wrapper {
   width: 970px;
   margin: auto;
