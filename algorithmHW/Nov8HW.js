@@ -23,11 +23,11 @@ revarr(arr)
 //if no array elements are food, then print "I'm hungry" once.
 
 function imhungry(arr) {
-  var count = 0;
+  var count = 0; //can do without this... you just need to see if it exists within the arr
   for(var i = 0; i < arr.length; i++) {
     if (arr[i] === "food") {
       console.log("yummy");
-      count = count + 1
+      count = count + 1 //var full = true... and then "if !true" log I'm hungry.
     }
   }
   if (count === 0) {
@@ -37,3 +37,25 @@ function imhungry(arr) {
 
 imhungry([1,2,3,"food"])
 imhungry([1,2,3])
+
+function imhungry(arr) {
+  for(var i = 0; i < arr.length; i++) {
+    if (arr[i] === "food") {
+      console.log("yummy");
+      var full = true //"hoists" it to the top and defines it right away within the function.
+    }
+  }
+  if (!full) {
+    console.log("I'm hungry")
+  }
+}
+
+imhungry([1,2,3,"food"])
+imhungry([1,2,3])
+
+
+//In Lecture
+
+//Swap Towards the Center
+//Given an array, swap the first and last, third and third to last, etc.
+//Every other one.
