@@ -1,0 +1,13 @@
+body div {
+  background-color: #fafafa;
+  width: 400px;
+  height: 400px;
+}
+
+.purple {
+  background-color: purple;
+}
+
+.hidden {
+  display: none;
+}

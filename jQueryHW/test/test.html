@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="css.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+                $(document).ready(function(){
+              // your jQuery codes will go here
+              alert('you are now working with jquery!')
+
+              $('p').hide();
+
+              $('#hide').click(function() {
+                $('p').hide();
+              });
+              $('#show').click(function() {
+                $('p').show();
+              });
+
+              $('#addclass').click(function() {
+                $('div').addClass('purple');
+              });
+
+              $('#changetext').click(function() {
+                $('p').text('You changed the text!');
+              });
+
+              $('#changehtml').click(function() {
+                $('div.ipsum').html('<p>Lorem Khaled Ipsum is a major key to success. The key is to enjoy life, because they don’t want you to enjoy life. I promise you, they don’t want you to jetski, they don’t want you to smile. Another one. In life you have to take the trash out, if you have trash in your life, take it out, throw it away, get rid of it, major key. Congratulations, you played yourself. You see that bamboo behind me though, you see that bamboo? Ain’t nothin’ like bamboo. Bless up. We the best.</p> <p>Give thanks to the most high. They key is to have every key, the key to open every door. You see that bamboo behind me though, you see that bamboo? Ain’t nothin’ like bamboo. Bless up. To be successful you’ve got to work hard, to make history, simple, you’ve got to make it. Major key, don’t fall for the trap, stay focused. It’s the ones closest to you that want to see you fail. To be successful you’ve got to work hard, to make history, simple, you’ve got to make it.</p>')
+              });
+
+              $( "input" ).focus(function() {
+                $( this ).next( "span" ).css( "display", "inline" ).fadeOut( 1000 );
+              });
+
+              $( "div" ).data( "test", { first: 16, last: "pizza!" } );
+              $('.ipsum').data("Can i put data here?");
+              $( "p" ).before( "<p>Test BEFORE</p>" );
+              $( "p" ).after( "<p>Test AFTER</p>" );
+
+              $( '.greeting').append( "<p>Test</p>" );
+              $( ".hidden" ).show();
+
+              $( "#clickme" ).click(function() {
+                $( "#book" ).slideDown( "slow", function() {
+                  // Animation complete.
+                });
+              });
+
+            });
+    </script>
+  </head>
+  <body>
+    <div id="clickme">
+      Click here
+    </div>
+    <img id="book" src="img/j1agt.jpg" alt="" width="100" height="123">
+    <div class="greeting">
+      <h1>HELLO</h1>
+    </div>
+    <div class="hidden">
+      <h1>Hidden</h1>
+    </div>
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+    <button id="show">SHOW!</button>
+    <button id="hide">HIDE!</button>
+    <button id="addclass">Add a class to the top div!</button>
+    <button id="changetext">Change text?</button>
+    <button id="changehtml">Change the html!</button>
+    <p><input type="text"> <span>focus fire</span></p>
+    <p><input type="password"> <span>focus fire</span></p>
+    <div class="ipsum">
+
+    </div>
+  </body>
+</html>
