@@ -63,6 +63,7 @@ h1 {
 .content {
 	width: 240px;
 	text-align: center;
+	margin: auto;
 }
 
 .imgcontainer {
@@ -82,53 +83,4 @@ h1 {
   max-height: 220px;*/
   width: auto;
   height: auto;
-}
-
-.cat0 {
-	background-image: url('img/cat0.png');
-	background-repeat: no-repeat;
-}
-
-.cat1 {
-	background-image: url('img/cat1.png');
-}
-
-.cat2 {
-	background-image: url('img/cat2.png');
-}
-
-.cat3 {
-	background-image: url('img/cat3.png');
-}
-
-.cat4 {
-	background-image: url('img/cat4.png');
-}
-
-.cat5 {
-	background-image: url('img/cat5.png');
-}
-
-.ninja0 {
-	background-image: url('img/ninja0.png');
-}
-
-.ninja1 {
-	background-image: url('img/ninja1.png');
-}
-
-.ninja2 {
-	background-image: url('img/ninja2.png')
-}
-
-.ninja3 {
-	background-image: url('img/ninja3.png');
-}
-
-.ninja4 {
-	background-image: url('img/ninja4.png');
-}
-
-.ninja4 {
-	background-image: url('img/ninja5.png');
 }
