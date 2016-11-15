@@ -106,7 +106,7 @@ function ismodtrue(x,y) {
   }
 }
 
-function superPrimeSumZ(limit) {
+function superPrimeSumZ(limit) {//This doesnt work.
   var i = 2; //Because 1 doesn't count as a prime number.
   var sum = 0; //Need to add 2 3 5 7 11 before getting into the next part...
   while (i <= limit) {
@@ -123,11 +123,11 @@ function superPrimeSumZ(limit) {
   return sum;
 }
 
-console.log(superPrimeSumZ(11)) //Should return/log 28
-console.log(superPrimeSumZ(25))//(2 3 5 7 11 13 17 19 23) should be 100?
-console.log(superPrimeSumZ(1000000));
+// console.log(superPrimeSumZ(11)) //Should return/log 28
+// console.log(superPrimeSumZ(25))//(2 3 5 7 11 13 17 19 23) should be 100?
+// console.log(superPrimeSumZ(1000000));
 
-function primechecker(x) {
+function primechecker(x) {//This does not work.
   if (x === 2 || 3 || 5 || 7 || 11) {
     console.log(x + " is prime!");
   }
@@ -139,9 +139,39 @@ function primechecker(x) {
   }
 }
 
-console.log(255%5);
-console.log(ismodtrue(255,5));
+function primecheckerb(x) { //divide UP to X.
+  var i = 2;
+  while (i < x) {
+    if (x%i===0) {
+      return false;
+    }
+    i++
+  }
+  return true; //remember, return breaks a function.
+}
 
-primechecker(5);
-primechecker(19);
-primechecker(255);
+//is there a way to see if it's dvisible by every other number?
+//check if the numbers leading up to i are divisible or not...
+//
+// console.log(255%5);
+// console.log(ismodtrue(255,5));
+
+// console.log(primecheckerb(5));
+// console.log(primecheckerb(19));
+// console.log(primecheckerb(255));
+
+function primesum(limit) {
+  var i = 2;
+  var sum = 0;
+  while (i <= limit) {
+    if (primecheckerb(i)===true) {
+        sum = add(sum,i);
+    }
+    i++;
+  }
+  return sum;
+}
+
+console.log(primesum(11));
+console.log(primesum(25));
+console.log(primesum(1000000));

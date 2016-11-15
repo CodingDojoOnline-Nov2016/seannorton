@@ -1,0 +1,13 @@
+
+
+//Stuff with Nick
+function sum(limit) { //computes sum of set of [1 -> lim] inclusive on both sides.
+	return Array.apply(null, {length: limit}).map( function(ele, index) {
+		return index + 1;
+
+	} ).reduce( function(a, b) {
+		return a + b;
+		}, 0
+
+	)
+}

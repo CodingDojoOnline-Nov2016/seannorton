@@ -7,26 +7,29 @@
     <script>
                 $(document).ready(function(){
               // your jQuery codes will go here
-              $('img').click(function(){
-                  $(this).hide();
+
+              // $('imgcontainer').click(function() {
+              //   $(this > img).toggle()
+              // })
+
+              $('div.cat1').on("click", function(){
+                $('.cat1').removeClass('.cat1').addClass('.ninja1')
+                  })
               });
 
-              $('.showbutton').click(function(){
-                $('img').show();
-              })
-            });
     </script>
   </head>
   <body>
     <div class="wrapper">
       <h1>Disappearing Ninja</h1>
       <div class="content">
-        <div class="imgcontainer"><img src="img/cat0.png" alt-src="img/ninja0.png" alt=""></div>
-        <div class="imgcontainer"><img src="img/cat1.png" alt-src="img/ninja1.png" alt=""></div>
-        <div class="imgcontainer"><img src="img/cat2.png" alt-src="img/ninja2.png" alt=""></div>
-        <div class="imgcontainer"><img src="img/cat3.png" alt-src="img/ninja3.png" alt=""></div>
-        <div class="imgcontainer"><img src="img/cat4.png" alt-src="img/ninja4.png" alt=""></div>
+        <div class="imgcontainer cat0"></div>
+        <div class="imgcontainer cat1"></div>
+        <div class="imgcontainer cat2"></div>
+        <div class="imgcontainer cat3"></div>
+        <div class="imgcontainer cat4"></div>
+        <div class="imgcontainer cat5"></div>
       </div>
-      <button class="showbutton">Ninjas, reappear!</button>
+      <button class="showbutton">Reset</button>
   </body>
 </html>
