@@ -73,7 +73,7 @@ h1 {
 	margin: 1px;
 }
 
-.imgcontainer img {
+.imgcontainer img { /*not necessary*/
   width: auto;
   height: auto;
 }

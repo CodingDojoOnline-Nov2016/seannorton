@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+      console.log("Ready.")
+
+      $('img').hover(
+        function() {
+          var temp = $(this).attr('src');
+          $(this).attr('src', $(this).attr('hovsrc'));
+          $(this).attr('hovsrc', temp)
+        }, function() {
+          var temp = $(this).attr('src');
+          $(this).attr('src', $(this).attr('hovsrc'));
+          $(this).attr('hovsrc', temp)
+        }
+      )
+    });
+    </script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Hover In/Out with <a href="https://acrnm.com/">ACRONYM</a> and <a href="http://store.nike.com/us/en_us/pw/gyakusou/nm9">Gyakusou</a></h1>
+      <div class="content">
+        <div class="acronym">
+          <div><img class="tallimg" src="img/a1a.jpg" alt="" hovsrc="img/a1b.jpg"></div>
+          <div><img class="tallimg" src="img/a2a.jpg" alt="" hovsrc="img/a2b.jpg"></div>
+          <div><img class="tallimg" src="img/a3a.jpg" alt="" hovsrc="img/a3b.jpg"></div>
+          <div><img class="tallimg" src="img/a4a.jpg" alt="" hovsrc="img/a4b.jpg"></div>
+        </div>
+        <div class="gyakusou">
+          <div><img class="wideimg" src="img/gs1a.jpg" alt="" hovsrc="img/gs1b.jpeg"></div>
+          <div><img class="wideimg" src="img/gs2a.jpg" alt="" hovsrc="img/gs2b.jpeg"></div>
+          <div><img class="wideimg" src="img/gs3a.jpg" alt="" hovsrc="img/gs3b.jpeg"></div>
+          <div><img class="wideimg" src="img/gs4a.jpg" alt="" hovsrc="img/gs4b.jpeg"></div>
+        </div>
+      </div>
+    </div>

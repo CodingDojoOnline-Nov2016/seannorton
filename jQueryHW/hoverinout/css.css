@@ -1,0 +1,23 @@
+.wrapper {
+  width: 1000px;
+  text-align: center;
+  margin: auto;
+}
+
+.tallimg {
+  width: 243px;
+}
+
+.wideimg {
+  width: 494px;
+  height: 350px;
+}
+
+.tallimg, .wideimg img {
+  object-fit: contain;
+}
+
+.acronym div, .gyakusou div {
+  display: inline-block;
+  margin: 2px;
+}

@@ -23,7 +23,7 @@ function drawRightStars(num) {
   var spaces = 75 - num;
   while (starstring.length <= 75) {
     if (spaces > 0) {
-      starstring += "-";
+      starstring += "-";//was supposed to add from the right so... starstring = "*" + starstring
       spaces--;
     }
     else {
@@ -35,6 +35,11 @@ function drawRightStars(num) {
 
 console.log(drawRightStars(50));
 console.log(drawRightStars(25));
+
+//drawrightstarsB
+var array = []
+array.length + 75;//"not really"
+
 
 function drawCenterStars(num) {
   var starstring="";
@@ -122,7 +127,7 @@ console.log(drawCenterChars(50,"!"));
 //if the value is divisible by 3 or 5.
 
 function only3or5(num) {
-  if (num%3===0 && num%5===0) {
+  if (num%3===0 && num%5===0) { //if the sum of all digits is divisible by three... then the number is divisible by three. divisible by five will either end in 5 or 0.
     return false;
   }
   else if (num%3===0 || num%5===0) {
@@ -138,10 +143,10 @@ console.log(only3or5(9));
 console.log(only3or5(15));
 
 function threesFives(lowerlimit, upperlimit) {
-  var count = lowerlimit;
+  // var count = lowerlimit; //unecessary...
   var sum = 0;
   while (lowerlimit <= upperlimit) {
-    if (only3or5(lowerlimit)===true) {
+    if (only3or5(lowerlimit)===true) {//don't need the true. the "if" already checks for that.
       sum += lowerlimit
     }
     lowerlimit++;

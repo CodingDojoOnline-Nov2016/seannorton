@@ -37,11 +37,11 @@ function binarynum(x) {
 function pwrs2(x) {
 	var i = 1;
 	while (i <= x) {
-		if (Math.exp(2,i)===x) {
+		if (Math.pow(2,i)===x) {
 			return i
 		}
 		i++;
 	}
 }
 
-pwrs2(8);
+console.log(pwrs2(8));
