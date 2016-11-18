@@ -17,16 +17,22 @@
 
           $(document).ready(function(){
              $('#large_box').click(function(){
-                alert('you clicked the big box!');
+                // alert('you clicked the big box!');//for testing
+                $(this).css('background-color', 'purple')
+                $(this).children().css('background-color', 'white')
          //comment this out when you have figured out what event.stopPropagation is used for
              })
 
              $('.side_box').click(function(event){
-                event.stopPropagation();
+              //  alert('you clicked a side box')//for testing
+               event.stopPropagation();//this stops the click event from "overflowing" onto the big box.
+               $(this).siblings().css('background-color', 'teal')
              })
 
              $('.middle_box').click(function(event){
-                event.stopPropagation();
+              //  alert('you clicked the middle box')//for testing
+               event.stopPropagation();
+               $(this).parent().css('background-color', 'red')
              })
           });
       </script>
