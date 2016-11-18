@@ -131,17 +131,17 @@ function primechecker(x) {//This does not work.
   if (x === 2 || 3 || 5 || 7 || 11) {
     console.log(x + " is prime!");
   }
-  else if (x > 11 && ismodtrue(x,2) === false && ismodtrue(x,3) === false && ismodtrue(x,5) === false && ismodtrue(x,7) === false && ismodtrue(x,11) === false ) {
-    console.log(x + " is prime!")
+  if (x > 11 && ismodtrue(x,2) === true || ismodtrue(x,3) === true || ismodtrue(x,5) === true || ismodtrue(x,7) === true || ismodtrue(x,11) === false ) {
+    console.log(x + " is not prime!")
   }
   else {
-    console.log(x + " is NOT prime!")
+    console.log(x + " is prime!")
   }
 }
 
-function primecheckerb(x) { //divide UP to X.
-  var i = 2;
-  while (i < x) {
+function primecheckerb(x) { //divide UP to X. This sucks for very huge numbers.
+  var i = 2; //we start here because it's not necessary to divide by one.
+  while (i < x) {//if it's two, it'll automatically drop down to line 150. we also do less than and not less than and equal to because here we're seeing if it's divisible by anything.
     if (x%i===0) {
       return false;
     }
@@ -149,6 +149,12 @@ function primecheckerb(x) { //divide UP to X.
   }
   return true; //remember, return breaks a function.
 }
+
+console.log(primecheckerb(2));
+console.log(primecheckerb(3));
+console.log(primecheckerb(5));
+console.log(primecheckerb(23));
+console.log(primecheckerb(24));
 
 //is there a way to see if it's dvisible by every other number?
 //check if the numbers leading up to i are divisible or not...
@@ -172,6 +178,6 @@ function primesum(limit) {
   return sum;
 }
 
-console.log(primesum(11));
-console.log(primesum(25));
-console.log(primesum(1000000));
+// console.log(primesum(11));
+// console.log(primesum(25));
+// console.log(primesum(1000000));

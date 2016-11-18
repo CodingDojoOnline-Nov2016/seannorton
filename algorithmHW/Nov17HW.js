@@ -88,6 +88,9 @@ function sumToOne3(num) {
 //console.log(sumToOne3(928));//THIS WORKS TOO! NOW I NEED TO MAKE IT LOOP. GIVES BACK 19
 
 function sumToOne4(num) {
+  if (num.toString().length === 1) {
+    return num;
+  }
   var numstring = num.toString(10);
   var sum = 0;
   var i = 0;
@@ -119,7 +122,7 @@ function clockHandAngles(seconds) {
     hrs = seconds/3600;
     hrDeg = (hrs/12)*360;
     if (hrDeg > 360) {//We only do this for hours because any minutes greater than sixty will be a part of the hours.
-      hrDeg = hrDeg%360;
+      hrDeg = hrDeg%360;//This helps deal with angles greater than 360.
     }
     seconds = seconds%3600
   }
@@ -128,9 +131,7 @@ function clockHandAngles(seconds) {
     minDeg = (mins/60)*360;
     seconds = seconds%60;
   }
-  else {
-    secDeg = (seconds/60)*360;
-  }
+  secDeg = (seconds/60)*360;//This cant be an else statement otherwise if there are minutes... this wouldn't run.
   hrDeg = hrDeg.toFixed(3)
   minDeg = minDeg.toFixed(3)
   secDeg = secDeg.toFixed(3)
@@ -139,4 +140,6 @@ function clockHandAngles(seconds) {
 
 clockHandAngles(3600);
 clockHandAngles(119730);
-clockHandAngles(30)
+clockHandAngles(30);
+
+//ADD DAYS AND AM/PM (SINCE MIDNIGHT) Also, week hand?
