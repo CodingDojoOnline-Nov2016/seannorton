@@ -17,12 +17,15 @@ function sweatShirtPricing(num) {
     discount = 1 - .35;
   }
   var total = subtotal * discount;
+  // total = Math.ceil(total);
+  total = total.toFixed(2);
   console.log(num+" sweatshirts costs "+total+" dollars.")
   // return   Math.ceil(total);
 }
 
 sweatShirtPricing(5)
 sweatShirtPricing(1)
+sweatShirtPricing(3)
 
 //clockhandangles with days and AM/PM
 
@@ -31,7 +34,7 @@ function clockHandAngles(seconds) {
   var hrDeg = minDeg = secDeg = hrs = mins = days = daysDeg = daycounter = ampmcounter = 0;
   var amorpm = "AM"
   var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  if (seconds >= 86400) {//day counter...
+  if (seconds >= 86400) {//day counter... //Doesn't work fully. Re-do this later.
     days = seconds/86400; //how many days do we have with the seconds?
     daycounter = Math.floor(days/7);
     if (daycounter >= 14) { //in case it's greater than a week.

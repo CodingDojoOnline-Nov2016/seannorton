@@ -1,0 +1,57 @@
+.wrapper {
+  width: 850px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 24pt;
+  margin: 15px;
+}
+
+h2 {
+  font-size: 18pt;
+  margin: 15px 5px;
+}
+
+.leftcontent, .rightcontent {
+  display: inline-block;
+}
+
+.leftcontent {
+  background-color: #fafafa;
+  padding: 15px;
+  width: 370px;
+}
+
+    .leftcontent p {
+      margin: 5px;
+    }
+
+    .leftcontent input:last-child {
+      margin-top: 5px;
+    }
+
+    .leftcontent .biginputbox {
+      width: 300px;
+      height: 250px;
+    }
+
+.rightcontent {
+  vertical-align: top;
+  padding:15px;
+  width: 370px;
+}
+
+    .rightcontent .classcard {
+      background-color: #afafaf;
+      padding: 15px;
+      margin: 10px;
+    }
+
+    .rightcontent h1 {
+      margin: 0px;
+    }
+
+    .rightcontent p {
+      display: none;
+    }
