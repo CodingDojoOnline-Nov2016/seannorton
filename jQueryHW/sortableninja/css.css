@@ -1,0 +1,15 @@
+.wrapper {
+  width: 800px;
+  text-align: center;
+  margin: auto;
+}
+
+h1 {
+  font-size: 18pt;
+}
+
+.content {
+  width: 600px;
+  text-align: center;
+  margin: auto;
+}
