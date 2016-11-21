@@ -36,22 +36,22 @@ h2 {
       height: 250px;
     }
 
-.rightcontent {
+div.rightcontent {
   vertical-align: top;
   padding:15px;
   width: 370px;
 }
 
-    .rightcontent .classcard {
+    div.rightcontent .classcard {
       background-color: #afafaf;
       padding: 15px;
       margin: 10px;
     }
 
-    .rightcontent h1 {
-      margin: 0px;
+    div.rightcontent .classcard h1 {
+      margin: 15px;
     }
 
-    .rightcontent p {
+    div.rightcontent .classcard p {
       display: none;
     }
