@@ -11,5 +11,5 @@ console.log(rollOne())
 //function playFives(num)
 
 function playFives(num) {//calls rollOne num times
-  
+
 }
