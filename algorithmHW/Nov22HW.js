@@ -4,7 +4,7 @@
 
 function mintofront(arr) {
   var min = arr[0];
-  var lowindex = 0
+  var lowindex = 0;
   for (var i = 0; i < arr.length; i++) {
     if (arr[i] < min) {
       min = arr[i];
@@ -15,7 +15,9 @@ function mintofront(arr) {
     arr[i] = arr[i-1];
   }
   arr[0] = min;
-  return(arr)
+  return(arr);
 }
 
 console.log(mintofront([4,2,1,3,5]));
+
+//Skyline Heights

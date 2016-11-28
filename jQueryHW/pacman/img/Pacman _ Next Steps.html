@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://learn.codingdojo.com/m/12/3234/19698 -->
+<html class=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="http://learn.codingdojo.com/assets/black_ninja-db2fe4f1051012ab89c235cc9bf3cd5a.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
+    <title>Pacman | Next Steps</title>
+    
+    <link href="./Pacman _ Next Steps_files/chapter_modules_layout-866b6aeb3ed4dadef22463370da759ae.css" media="all" rel="stylesheet">
+    
+    <script src="./Pacman _ Next Steps_files/socket.io.js.download" type="text/javascript"></script>
+    <script src="./Pacman _ Next Steps_files/chapter_modules_scripts-e37506bd2e02ea27a014678d503dec26.js.download"></script><style></style>
+    <meta content="authenticity_token" name="csrf-param">
+<meta content="KzW4jSRQOqvSm9RLcyEFHt+0N0poyGkHjmOdWi6i8rw=" name="csrf-token">
+    <script>
+//<![CDATA[
+var AUTH_TOKEN = 'KzW4jSRQOqvSm9RLcyEFHt+0N0poyGkHjmOdWi6i8rw=';
+//]]>
+</script>
+   
+
+    <script type="text/javascript">
+        var io = io.connect('https://learn.codingdojo.com:8787', {force_connection: true ,path: "/app1socket"});
+        var pair_hangout = false;
+        var admin_as_student = "";
+
+        io.on("error", function(){
+            console.log('Failed connecting to node js server.');
+        });
+    
+        if(admin_as_student != "true"){
+            io.on('server:logout', function(){
+                io.emit("student:signout");
+
+                $.ajax({
+                    url: "/before_signout/",
+                    type: "get",
+                    success: function(values) {
+                        if(values.status){
+                            window.location.href = "/signout";  
+                        }
+                    }
+                });
+            });
+        }
+
+        $(document).on('ready page:load', function (){
+            io.on('need_signin', function(socket_data) {
+            	io.emit('student:signin', {user_information: {"id":11661,"first_name":"Sean","last_name":"Norton","email":"seannorton0807@gmail.com","image_url":"https://s3.amazonaws.com/General_V88/boomyeah2015/codingdojo/user11661/profile_pic/KakaoTalk_20160711_091047381.jpg?1475713273","created_at":"2016-08-02T14:21:48.000Z","user_level":1,"applicant_id":5067,"is_automated":null,"address":null,"bootcamp_type":1,"bootcamp_date":"October 3, 2016","bootcamp_location":"5","updated_at":"2016-11-22T23:57:58.067Z","last_visited_url":"/m/12/3234/19698","group_ids":[154]}, ip_address: $("#page_info input:nth-child(6)").val(), device: navigator.userAgent}, function(data){
+            		new_track();
+            	});
+            });
+
+            if(admin_as_student != "true"){
+                io.on('server:warning_duplicate_user', function(data){
+                    console.log("warning!!");
+                    io.emit("track:logout_duplicate", data);
+                });
+            }
+
+            function new_track(){
+            	io.emit('track:new', {
+    	        	url: $("#page_info input:nth-child(1)").val(), 
+    	        	track_id: $("#page_info input:nth-child(2)").val(),
+    	        	course_id: $("#page_info input:nth-child(3)").val(),
+    	        	chapter_id: $("#page_info input:nth-child(4)").val(),
+    	        	module_id: $("#page_info input:nth-child(5)").val(),
+    	        	ip_address: $("#page_info input:nth-child(6)").val()  
+    	        });
+            }
+
+            new_track();
+
+            $("#logout_button").click(function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                io.emit("student:signout");
+                window.location.href = "/signout";
+            });
+
+            io.on("new_chat_message", function(new_message){
+                display_sent_chat_message(new_message);
+            });
+
+            io.on("send_new_message", function(message){
+                display_received_chat_message(message);
+            });
+
+            io.on('make_user_unavailable', function(call_information){
+                make_user_unavailable(call_information);
+            });
+
+            io.on('make_user_available', function(user){
+                make_user_available(user);
+            });
+
+            io.on("invite_student", function(call_information){
+                display_call_request(call_information);
+            });
+        });
+
+    </script>
+  
+<style type="text/css">.fancybox-margin{margin-right:17px;}</style><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+<body>
+
+
+<input type="checkbox" id="activate_menu_checkbox" class="hidden" checked="checked">
+
+<div id="menu_button">                                                                                        
+	<label for="activate_menu_checkbox" class="glyphicon glyphicon-menu-hamburger"></label>
+	<a href="http://learn.codingdojo.com/dashboard#tracks_container" class="button_text unload_link"><div class="track_button">Back to Tracks</div></a>
+	<!-- <label label for="activate_menu_checkbox" class="glyphicon menu_indicator"></label> -->
+</div>  
+
+<div class="hidden_chapter_title hidden"><a class="chapter_title" href="javascript:void(0)"></a></div>
+
+<div id="sidebar" class="nano has-scrollbar" style="height: 100px;">
+	<ul id="chapter_list" class="nano-content" tabindex="0" style="right: -17px;">
+			<li class="active">
+				<a class="chapter_title unload_link" href="http://learn.codingdojo.com/m/12/3234">
+					<h3><span>Next Steps</span></h3>
+					<div class="progress_container">
+						<span class="chapter_item_progress">
+							
+
+							20%
+						</span>
+					</div>				
+				</a>
+				<ul class="tab_list" id="module_list_3234">
+					
+					<li class="text completed_tab ">
+						<a class="tab_title unload_link" href="http://learn.codingdojo.com/m/12/3234/19697">
+							<div class="tab_label"><span class="tab_icon"></span></div>
+							<span class="tab_details" id="quiz_id_19697">
+								<h4>Next Steps</h4> <!-- % if contents["type"] == QUIZ_MODULE % -->
+							</span>
+						</a>
+					</li>
+					
+					<li class="to_do  current">
+						<a class="tab_title unload_link" href="http://learn.codingdojo.com/m/12/3234/19698">
+							<div class="tab_label"><span class="tab_icon"></span></div>
+							<span class="tab_details" id="quiz_id_19698">
+								<h4>Pacman (optional but highly encouraged)</h4> <!-- % if contents["type"] == QUIZ_MODULE % -->
+							</span>
+						</a>
+					</li>
+					
+					<li class="to_do  ">
+						<a class="tab_title unload_link" href="javascript:void(0)">
+							<div class="tab_label"><span class="tab_icon"></span></div>
+							<span class="tab_details" id="quiz_id_22680">
+								<h4>1942</h4> <!-- % if contents["type"] == QUIZ_MODULE % -->
+							</span>
+						</a>
+					</li>
+					
+					<li class="to_do  ">
+						<a class="tab_title unload_link" href="javascript:void(0)">
+							<div class="tab_label"><span class="tab_icon"></span></div>
+							<span class="tab_details" id="quiz_id_22688">
+								<h4>CS 50</h4> <!-- % if contents["type"] == QUIZ_MODULE % -->
+							</span>
+						</a>
+					</li>
+					
+					<li class="text  ">
+						<a class="tab_title unload_link" href="javascript:void(0)">
+							<div class="tab_label"><span class="tab_icon"></span></div>
+							<span class="tab_details" id="quiz_id_19700">
+								<h4>Extras</h4> <!-- % if contents["type"] == QUIZ_MODULE % -->
+							</span>
+						</a>
+					</li>
+				</ul>
+			</li>
+	</ul>
+<div class="nano-pane" style="display: none;"><div class="nano-slider" style="height: 781px; transform: translate(0px, 0px);"></div></div></div>
+
+<nav id="main_navigation">
+	<div id="navbar">
+		<ul id="breadcrumbs" class="left_align">
+			<li>Web Fundamentals Online</li>
+			<li>CS 100 - Next Steps</li>
+			<li id="chapter_title">Next Steps</li>
+			<li class="module_title">Pacman</li>
+		</ul>
+		<div id="profile_block" class="pull-right">
+			<img src="./Pacman _ Next Steps_files/KakaoTalk_20160711_091047381.jpg" alt="Sean" class="profile_image">
+			<div class="dropdown">
+				<a href="http://learn.codingdojo.com/m/12/3234/19698#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+					<div id="user_name_block">
+						<div>
+							<span class="decor_text">Hello,  </span> 
+							<span class="user_name">Sean N</span>
+						</div>
+					</div>
+					<span class="caret"></span>
+				</a>
+				<div class="dropdown-menu dropdown-menu-right" role="menu">
+					<div class="dropdown_content">	
+						<ul>
+							<li>
+								<a href="http://learn.codingdojo.com/dashboard">Dashboard</a>
+								<span class="glyphicon glyphicon-home pull-right" aria-hidden="true"></span>
+							</li>
+							<li>
+								<a href="http://learn.codingdojo.com/dashboard#tracks_container">Tracks</a>
+								<span class="glyphicon glyphicon-book pull-right" aria-hidden="true"></span>
+							</li>
+							<li data-target="#my_account_modal" data-toggle="modal">
+								<a href="http://learn.codingdojo.com/m/12/3234/19698#" class="view_user_info">My Account</a>
+								<span class="glyphicon glyphicon-user pull-right" aria-hidden="true"></span>
+							</li>
+							<li class="dropdown_buttons">
+								<a id="signout_button" class="btn btn-primary btn-lg btn-block unload_link" href="http://learn.codingdojo.com/signout">Log Out</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<section id="main_content">
+	<div id="content_navigation">
+
+		<div id="return_button" class="right_align">
+			<a href="http://learn.codingdojo.com/dashboard" class="unload_link">
+				<span class="glyphicon glyphicon-th-large"></span><span>Home</span> 
+			</a>
+			<input type="hidden" name="authenticity_token" value="KzW4jSRQOqvSm9RLcyEFHt+0N0poyGkHjmOdWi6i8rw=" current-module="19698"> 
+		</div>
+	</div>
+
+	<div id="section_content">
+		<div class="content_block">
+			<div id="module_container">
+				<div class="module_content module_content_block">
+						 <!--   <div class="flowplayer" data-ratio="0.4167">
+								<video>
+									
+									<source type="video/mp4" src="http://techslides.com/demos/sample-videos/small.mp4">
+									<source type="video/mp4" src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4">
+								</video>
+
+								<div class="buttons">
+									<span>0.25x</span>
+									<span>0.5x</span>
+									<span class="active">1x</span>
+									<span>1.5x</span>
+									<span>2x</span>
+								</div>
+							</div> -->
+
+							<!-- HTML5 video player with controllers -->
+						<!-- 	<div class="html5_video_container" >
+								<video autobuffer data-video-id='1'>
+							  		<source  src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" type="video/mp4">
+								</video>
+
+								<div class="btn-group" role="group" aria-label="...">
+									<button type="button" class="btn btn-default reduce_video_speed"> <span class="glyphicon glyphicon-minus"></span> </button>
+									<button type="button" class="btn btn-default current_speed">1.0</button>
+									<button type="button" class="btn btn-default add_video_speed"> <span class="glyphicon glyphicon-plus"></span> </button>
+								</div>
+
+								<div class="video_controls" id="controls_1">
+
+									<div class="bottom_video_controls">
+										
+
+										<a href="javascript:void(0)" class="backward_video_btn"><span class="glyphicon glyphicon-backward "></span></a>    
+
+										<a href="javascript:void(0)" class="play_pause_btn"><span class=" glyphicon glyphicon-play"></span></a>	
+
+										<a href="javascript:void(0)" class="forward_video_btn"><span class="glyphicon glyphicon-forward "></span></a>
+
+
+									
+
+										<input type="range" class="seek_bar_input" value="0">
+
+										<div class="progress_time_container">
+											<span class="current_play_time">0:00</span> / <span class="video_duration">0:00</span>
+										</div>
+
+										<div class="dropup">
+											<a data-target="#" href="http://example.com" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												<span class="glyphicon glyphicon-volume-up"></span>
+											</a>
+
+											<div class="dropdown-menu">
+												<input type="range" class="volume_bar_input" min="0" max="1" step="0.1" value="1" orient="vertical">
+											</div>
+										</div>
+												
+									</div>	
+
+									<span class="glyphicon glyphicon-resize-full full_screen_btn"></span>
+								</div>
+							</div> -->
+
+
+								<div class="module_description active_lesson_with_video check_for_cache"><h2>Pacman (optional but highly encouraged)</h2><p>
+ The goal of this assignment/video is 1) for you to see Michael Choi's workflow and learn from how Michael builds things and 2) for you to start applying some of the algorithms you've learned to starting create simple apps. &nbsp;If you're rusty on implementing the algorithms to build the necessary features, please 1) redo the algorithm app and make sure you understand all the key points in the app as well as the mandatory 13 challenges and 2) reach out to other colleagues in your group and see if they can work with you. &nbsp;Don't feel bad if you don't have time to work on these assignments, but if you do have the extra time, please watch the video and work on this assignment for at least 4 hours.</p><iframe src="./Pacman _ Next Steps_files/148969778.html" width="689" height="387" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" style="width: 938px; height: 526.859px; display: inline; min-height: 528px;" class="vimeo_responsive">
+</iframe></div>
+								<div class="appended_module">
+									<div class="todo_content">
+										<ul class="todo_item_parent">
+
+											<form action="http://learn.codingdojo.com/tracks/submit_todo" method="post" id="form_to_do_items">		
+
+													<li>				
+
+														<input type="hidden" name="module_to_do_item_id[]" value="1">	
+														<input type="hidden" name="is_completed[]" value="1" class="todo_status">	
+														<input type="checkbox" id="todo_item_1" class="todo_check">
+														
+														<label for="todo_item_1" class="todo_list_item">
+															<div class="item_checkbox checked"></div>
+															<p>Change the world map and make the maze more interesting!</p>	
+														</label>	
+													</li>
+													<li>				
+
+														<input type="hidden" name="module_to_do_item_id[]" value="2">	
+														<input type="hidden" name="is_completed[]" value="1" class="todo_status">	
+														<input type="checkbox" id="todo_item_2" class="todo_check">
+														
+														<label for="todo_item_2" class="todo_list_item">
+															<div class="item_checkbox checked"></div>
+															<p>Get cherries to appear. Cherry = 50 pts.</p>	
+														</label>	
+													</li>
+													<li>				
+
+														<input type="hidden" name="module_to_do_item_id[]" value="3">	
+														<input type="hidden" name="is_completed[]" value="1" class="todo_status">	
+														<input type="checkbox" id="todo_item_3" class="todo_check">
+														
+														<label for="todo_item_3" class="todo_list_item">
+															<div class="item_checkbox checked"></div>
+															<p>Prevent Pacman from leaving the maze or going through the walls.</p>	
+														</label>	
+													</li>
+													<li>				
+
+														<input type="hidden" name="module_to_do_item_id[]" value="4">	
+														<input type="hidden" name="is_completed[]" value="1" class="todo_status">	
+														<input type="checkbox" id="todo_item_4" class="todo_check">
+														
+														<label for="todo_item_4" class="todo_list_item">
+															<div class="item_checkbox checked"></div>
+															<p>Get Pacman to lookup up/down/left/right depending on the direction Pacman is moving.</p>	
+														</label>	
+													</li>
+													<li>				
+
+														<input type="hidden" name="module_to_do_item_id[]" value="5">	
+														<input type="hidden" name="is_completed[]" value="1" class="todo_status">	
+														<input type="checkbox" id="todo_item_5" class="todo_check">
+														
+														<label for="todo_item_5" class="todo_list_item">
+															<div class="item_checkbox checked"></div>
+															<p>(Optional) Get a ghost to show up (the ghost does not have to move yet). When Pacman meets the ghost, have Pacman lose its life.</p>	
+														</label>	
+													</li>
+													<li>				
+
+														<input type="hidden" name="module_to_do_item_id[]" value="6">	
+														<input type="hidden" name="is_completed[]" value="1" class="todo_status">	
+														<input type="checkbox" id="todo_item_6" class="todo_check">
+														
+														<label for="todo_item_6" class="todo_list_item">
+															<div class="item_checkbox checked"></div>
+															<p>(Optional) Get the ghost to move around in random directions.</p>	
+														</label>	
+													</li>
+													<li>				
+
+														<input type="hidden" name="module_to_do_item_id[]" value="7">	
+														<input type="hidden" name="is_completed[]" value="1" class="todo_status">	
+														<input type="checkbox" id="todo_item_7" class="todo_check">
+														
+														<label for="todo_item_7" class="todo_list_item">
+															<div class="item_checkbox checked"></div>
+															<p>(Optional) Get two Pacmans to show up and move!  (use one keyboard to move 2 Pacmans)</p>	
+														</label>	
+													</li>
+									
+												<input type="hidden" name="id" id="task_todo_id" value="790713">
+												<input type="hidden" name="chapter_module_id" value="19698">
+												<input type="hidden" name="authenticity_token" value="KzW4jSRQOqvSm9RLcyEFHt+0N0poyGkHjmOdWi6i8rw=">
+											</form>
+										</ul>
+									</div>
+
+									<div id="programs_content">
+										<div id="pair_program" class="programs" data-target=".pair_program_modal" data-toggle="modal">
+											<span class="glyphicon pair_program_icon" aria-hidden="true"></span>
+											<p>Pair Program (0)</p>
+											<span class="time_left pair_program_icon" id="pair_program_time_left" style="visibility: hidden;">( -420 minute left )</span>
+										</div>
+										<div id="faq" class="programs" data-target=".faq" data-toggle="modal">
+											<span class="glyphicon faq_icon" aria-hidden="true"></span>
+											<p>Discussion (1)</p>
+											<span class="time_left faq_icon" id="faq_time_left" style="visibility: hidden;">( -320 minute left )</span>
+										</div>
+										<div id="ask_someone" class="programs" data-target=".ask_someone_modal" data-toggle="modal">
+											<span class="glyphicon ask_someone_icon" aria-hidden="true"></span>
+											<p>Ask Someone (0)</p>
+											<span class="time_left ask_someone_icon" id="ask_someone_time_left" style="visibility: hidden;">( -360 minute left )</span>
+										</div>
+									</div>
+
+									<div class="upload_form">
+										<h4>Files</h4>
+										<table class="upload_item_table table">
+											<tbody> 
+											</tbody>
+										</table>
+
+										<div class="how_container"></div>
+
+										<div>
+											<form action="http://learn.codingdojo.com/tracks/upload_file" class="todo_file_upload_form" method="post" enctype="multipart/form-data">
+												<input type="hidden" name="authenticity_token" value="KzW4jSRQOqvSm9RLcyEFHt+0N0poyGkHjmOdWi6i8rw=">
+												<label for="todo_file_upload_19698" class="choose_file"><img src="./Pacman _ Next Steps_files/add_file.png" alt=""></label>
+												<input type="file" name="file" id="todo_file_upload_19698" class="file_name">
+												<input type="hidden" name="module_id" value="19698">
+												<input type="hidden" name="chapter_id" value="3234">
+												<span class="upload_name">No file chosen</span>
+												<label for="todo_file_upload_19698">
+													<div class="btn btn-primary upload_file_button"> 
+														<img id="cloud_upload" src="./Pacman _ Next Steps_files/cloud.png" alt="">
+														<span class="upload_file_button_text">Upload</span>
+													</div>
+												</label>
+											</form>
+											<div id="for_upload_file" data-target="#upload_file_modal" data-toggle="modal" style="display:none;"><button>click me</button></div>
+										</div>
+
+										<!-- start of sample codes for FAQ -->
+										<div class="modal fade faq" tabindex="-1" role="dialog" aria-hidden="true">
+											<div class="modal-dialog modal-lg">
+												<div class="modal-content" id="faq_content">
+													<span class="hide_modal glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close"></span>
+													<h4>Discussion : Pacman</h4>
+													<a href="http://learn.codingdojo.com/m/12/3234/19698#" class=" pull-right btn btn-primary" id="create_question">ASK QUESTION</a>
+													<div id="faq_scroll" class="nano has-scrollbar">
+														<div class="nano-content" tabindex="0" style="right: -17px;">
+															<div id="question_container">
+																<form id="post_question" class="list-unstyled create_question_container" action="http://learn.codingdojo.com/helps/post_question" method="post">
+																	<img src="./Pacman _ Next Steps_files/KakaoTalk_20160711_091047381.jpg" alt="profile_picture" class="profile_image">
+																	<div id="question_form">
+																		<input type="hidden" name="authenticity_token" value="KzW4jSRQOqvSm9RLcyEFHt+0N0poyGkHjmOdWi6i8rw=">
+																		<input type="hidden" name="question[module_id]" value="19698">
+																		<textarea id="text_question" class="form-control question_value" name="question[text_question]" rows="2" placeholder="Ask Question"></textarea>
+																		<div class="post_question_buttons">
+																			<button class="btn btn-default cancel_created_question">CANCEL</button>
+																			<button class="btn btn-primary post_created_question">POST QUESTION</button>
+																		</div>
+																	</div> 
+																</form>
+
+																<ul class="list-unstyled list_of_question">
+																	<!-- Loop questions here -->
+																</ul>
+																<a href="http://learn.codingdojo.com/m/12/3234/19698#" class="show_more_question" style="display: none;">Show more questions (<span class="number_of_question"></span>)</a>
+															</div>
+														</div>
+													<div class="nano-pane" style="display: none;"><div class="nano-slider" style="height: 20px; transform: translate(0px, 0px);"></div></div></div>
+												</div>
+											</div>	
+										</div>
+										<!-- end of sample codes for FAQ -->
+
+										<!-- Modal for Ask Someone Modal-->
+										<div class="modal fade ask_someone_modal" tabindex="-1" role="dialog" aria-hidden="true">
+											<div class="modal-dialog modal-lg">
+												<div class="modal-content" id="pair_programming_content">
+												<span class="hide_modal glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close"></span>
+													<div class="modal_header">
+														<h4>Ask another student</h4>
+													</div>
+													<div class="modal_body nano has-scrollbar">
+														<div class="nano-content" tabindex="0" style="right: -17px;"> 
+															<table class="table remote_student">
+																<tbody></tbody>
+															</table>
+										                </div>
+										            <div class="nano-pane" style="display: none;"><div class="nano-slider" style="height: 20px; transform: translate(0px, 0px);"></div></div></div>   
+													<div class="modal_header">
+														<h4>Ask a TA</h4>
+													</div>
+													<div class="modal_body nano has-scrollbar">
+														<div class="nano-content" tabindex="0" style="right: -17px;">
+															<table class="table remote_ta">
+																<tbody></tbody>
+															</table>
+										                </div>
+										            <div class="nano-pane" style="display: none;"><div class="nano-slider" style="height: 20px; transform: translate(0px, 0px);"></div></div></div>   
+												</div>	
+											</div>
+										</div>
+										<!-- End of Ask Someone Modal -->
+
+										<!-- start of sample codes for answersheet -->
+										<div id="answersheet_modal" class="modal fade answersheet" tabindex="-1" role="dialog" aria-hidden="true">
+											<div class="modal-dialog modal-lg">
+												<div class="modal-content answers_modal">
+													<span class="hide_modal glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close"></span>
+													<div class="side_panel panel_content">
+														<div class="list_of_answers">
+															<h4>Loading...</h4>
+															<span class="number_of_index"></span>
+															<div id="answersheet_scroll" class="nano has-scrollbar">
+																<div id="main_accordion" class="nano-content" role="tablist" aria-multiselectable="true" tabindex="0" style="right: -17px;">
+																	<ul class="list-unstyled" id="modal_list">
+																		<!-- LOOP THRU DIRECTORY HERE -->
+																	</ul>
+																</div>
+															<div class="nano-pane" style="display: none;"><div class="nano-slider" style="height: 20px; transform: translate(0px, 0px);"></div></div></div>
+														</div>
+														<div class="assignment_video hidden">
+															<a href="http://learn.codingdojo.com/m/12/3234/19698#" id="watch_video" class="btn btn-primary open_file" data-name="open_video" video-id="#">Watch Video</a>
+														</div>
+														<div class="assignment_download hidden">
+															<a id="download_zip_button" href="http://learn.codingdojo.com/m/12/3234/19698#" class="btn btn-primary">Download all Codes</a>
+														</div>
+													</div>
+													<div class="main_panel panel_content">
+											            <div class="panel with-nav-tabs panel-default">
+											                <div class="panel-heading">
+										                        <ul class="nav nav-tabs" id="modal_tabs"></ul>
+											                </div>
+											                <div id="tab_scroll" class="nano has-scrollbar">
+																<div class="nano-content" tabindex="0" style="right: -17px;"> 
+													                <div class="panel-body">
+													                    <div class="tab-content" id="modal_panes"></div>
+													                </div>
+													            </div>
+													        <div class="nano-pane" style="display: none;"><div class="nano-slider" style="height: 20px; transform: translate(0px, 0px);"></div></div></div>
+											            </div>
+													</div>
+												</div>
+											</div> 
+										</div>
+										<!-- end of sample codes for answersheet -->
+
+										<!-- Upload File Modal -->
+										<div class="modal fade info_modal" id="upload_file_modal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+											<div class="modal-dialog" style="margin-top: 231.3px;">
+												<div class="modal-content">
+													<span class="hide_modal glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close"></span>
+													<div class="modal_header"><h4>Assignment Upload</h4></div>
+													<div class="modal_body">
+														<p>Great Job! Are you willing to help someone who's struggling with this assignment?</p>
+														<a href="http://learn.codingdojo.com/m/12/3234/19698#" class="btn btn-default cancel_btn" data-dismiss="modal">MAYBE NEXT TIME.</a>
+														<a href="http://learn.codingdojo.com/m/12/3234/19698#" class="btn btn-primary submit_btn absolutely_btn" data-dismiss="modal">ABSOLUTELY!</a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- end of Upload File Modal -->
+
+										<!-- Modal of Pair Program -->
+										<div class="modal fade pair_program_modal" tabindex="-1" role="dialog" aria-hidden="true">
+											<div class="modal-dialog modal-lg">
+												<div class="modal-content" id="pair_programming_content">
+													<span class="hide_modal glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close"></span>
+													<div class="modal_header">
+														<h4>Pair program with someone else.</h4>
+													</div>
+													<div class="modal_body nano has-scrollbar">
+														<div class="nano-content" tabindex="0" style="right: -17px;">
+															<button style="display:none" class="close_pair_program_modal" data-dismiss="modal"></button><table class="table">
+																<tbody class="list_of_pair_programmers">
+																<!-- Loop the pair programmers -->
+																
+																</tbody>
+															</table>
+										                </div>
+										            <div class="nano-pane" style="display: none;"><div class="nano-slider" style="height: 20px; transform: translate(0px, 0px);"></div></div></div>     
+												</div>	
+											</div>
+										</div>
+										<!-- end of Pair Programming Modal -->
+									</div>
+								</div>
+
+								<!-- Pair Coding Modal -->
+								<div class="modal fade info_modal" id="pair_coding_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+									<div class="modal-dialog" style="margin-top: 231.3px;">
+										<div class="modal-content">
+											<span class="hide_modal glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close"></span>
+											<div class="modal_header">
+												<h4>Pair Coding</h4>
+											</div>
+											<div class="modal_body">
+												<p>John is calling you.</p>
+												<a href="http://learn.codingdojo.com/m/12/3234/19698#" class="btn btn-default cancel_btn" data-dismiss="modal">DECLINE</a>
+												<a href="http://learn.codingdojo.com/m/12/3234/19698#" class="btn btn-primary submit_btn" data-dismiss="modal">ACCEPT CALL</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- end of Pair Coding Modal -->
+
+								<!-- Start Working on This  Modal -->
+								<div class="modal fade info_modal" id="start_working_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+									<div class="modal-dialog" style="margin-top: 231.3px;">
+										<div class="modal-content">
+											<span class="hide_modal glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close"></span>
+											<div class="modal_header">
+												<h4>Confirm Action</h4>
+											</div>
+											<div class="modal_body">
+												<p>You have already started working on another assignment. Do you want to discontinue working on previous assignment and start working on this one?</p>
+												<a href="http://learn.codingdojo.com/m/12/3234/19698#" class="btn btn-default cancel_btn" data-dismiss="modal">No</a>
+												<a href="http://learn.codingdojo.com/m/12/3234/19698#" class="btn btn-primary submit_btn" id="discontinue_task_btn" data-dismiss="modal">Yes</a>
+											</div>
+										</div>
+									</div>
+									<input type="hidden" id="user_pending_task">
+									<input id="user_pending_task_token" type="hidden" name="authenticity_token" value="KzW4jSRQOqvSm9RLcyEFHt+0N0poyGkHjmOdWi6i8rw=">
+								</div>
+								<!-- end of Start Working on This Modal  -->
+						
+
+					
+					
+					<!-- Modal Inactivity Notice Modal -->
+					<div class="modal fade info_modal" id="inactivity_notice_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+						<div class="modal-dialog" style="margin-top: 231.3px;">
+							<div class="modal-content">
+								<span class="hide_modal glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close"></span>
+								<div class="modal_header">
+									<h4>Inactivity Notice</h4>
+									<span class="glyphicon glyphicon-question-sign notice_tooltip pull-right" data-toggle="tooltip" data-placement="right" title="The system keeps track if you are active or not. We are saving the total time you spent on each topic for course improvement and student support purposes."></span>
+								</div>
+								<div class="modal_body">
+									<p>You have been idle for a long time, click the button below if you are you are still there.</p>
+									<a href="http://learn.codingdojo.com/m/12/3234/19698#" class="btn btn-primary continue_btn" data-dismiss="modal">CLICK TO CONTINUE</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- end of Modal Inactivity Notice Modal -->
+
+					<!-- Log out from another device modal --> <!-- end of Log out from another device modal -->
+				</div>
+			</div>
+
+				
+				<div class="module_footer display_none  hidden" id="start_19698">
+					<span id="start_working">START WORKING ON THIS</span>
+					<input id="task_start_working_token" type="hidden" name="authenticity_token" value="KzW4jSRQOqvSm9RLcyEFHt+0N0poyGkHjmOdWi6i8rw=">
+				</div>
+		</div>	
+
+		<div class="content_footer_block">
+			<a class="site_terms_link" data-target=".privacy_policy_modal" data-toggle="modal">Privacy Policy</a>
+			<div id="report_mistake_label_container" class="pull-right">
+				<span>To report a mistake, highlight the selection you believe is in error.</span>
+			</div>
+		</div>
+
+		<!-- cts warning modal -->
+		<div class="modal fade info_modal cts_warning_modal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" style="margin-top: 231.3px;">
+				<div class="modal-content">
+					<span class="hide_modal glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close"></span>
+					<form action="http://learn.codingdojo.com/m/12/3234/19698" id="cts_warning_form">
+						<div class="modal_header"><h4>Confirm Action</h4></div>
+						<div class="modal_body">
+							<p>Only <span class="time_passed"></span> had passed since you started this assignment. Are you sure you want to view the Answersheet? The more you code on your own, the more you become a self-sufficient software engineer</p>
+							<a href="javascript:void(0);" class="btn btn-default cancel_btn" data-dismiss="modal">CANCEL</a>
+							<!-- <a href="javascript:void(0);" class="btn btn-primary submit_btn continue_btn" data-dismiss="modal">CONTINUE</a> -->
+							<input type="submit" class="btn btn-primary submit_btn continue_btn" id="view_answersheets" data-dismiss="modal" value="CONTINUE">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div> 
+
+	<!-- Reported a mistake popover -->
+	<a href="http://learn.codingdojo.com/m/12/3234/19698#" class="hidden" id="report_mistake_popover" data-placement="bottom"></a>
+	<div class="hidden" id="report_mistake_popover_clone">
+		<span class="report_mistake_label">Report a mistake</span>
+		<form id="report_mistake_container" action="http://learn.codingdojo.com/report_mistake">
+			<h5>Report a mistake</h5>
+			<input type="hidden" name="chapter_module_id" value="19698">
+			<input type="hidden" name="authenticity_token" value="KzW4jSRQOqvSm9RLcyEFHt+0N0poyGkHjmOdWi6i8rw=">
+			<input type="hidden" name="course_id" value="1103">
+			<input type="hidden" name="track_id" value="12">
+			<textarea name="report_mistake_textarea" id="report_mistake_textarea" rows="5" placeholder="Tell us what&#39;s wrong"></textarea>
+			<input type="submit" value="SUBMIT" class="btn btn-primary btn-block">
+		</form>
+	</div>
+	<!-- END of Reported a mistake popover -->
+
+	<ul class="create_message_container">
+		<!-- Append the Chat here -->
+		<li class="chat_counter hidden"> 
+			<span class="glyphicon glyphicon-comment"></span> 
+			<span id="number_of_hidden_chat"></span>
+		</li>
+	</ul>
+	<div id="content_footer" style="width: 1339px;">	
+		<div class="prev_button">  
+			<a href="http://learn.codingdojo.com/m/12/3234/19697" class="btn btn-primary previous_button_link unload_link">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+				Previous
+			</a>
+			<!-- <span class="glyphicon glyphicon-chevron-left"></span>
+			<a href="/m/12/3234/19697" class="previous_button_link unload_link">Prev</a> -->
+		</div>
+		<a href="javascript:void(0);" class="back_button">Back to Track</a>
+		<div class="next_button pull-right">
+				<a href="http://learn.codingdojo.com/m/12/3234/22680" class="btn btn-primary next_button_link unload_link">
+					Next
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				</a>
+				<!-- <a href="/m/12/3234/22680" class="next_button_link unload_link">Next</a> -->
+				<a href="http://learn.codingdojo.com/m/12/3234/22680" class="real_next_link hidden"></a>
+				<!-- <span class="glyphicon glyphicon-chevron-right"></span> -->
+		</div>
+
+		<input type="hidden" id="current_module_id" name="authenticity_token" value="KzW4jSRQOqvSm9RLcyEFHt+0N0poyGkHjmOdWi6i8rw=" current-module="19698" course-percentage="40"> 
+		<div id="linkage" data-target="#inactivity_notice_modal" data-toggle="modal" style="display:none;"></div>
+	</div>
+	<!-- My Account Modal -->
+	  <div id="my_account_modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+	    <div class="modal-dialog modal-lg">
+	      <div class="modal-content">
+	      	<span class="hide_modal glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close"></span>
+	        <div class="user_information_block">
+	          <form action="http://learn.codingdojo.com/upload_profile_pic" class="profile_pic" enctype="multipart/form-data" method="post">
+	            <input type="hidden" name="authenticity_token" value="KzW4jSRQOqvSm9RLcyEFHt+0N0poyGkHjmOdWi6i8rw=">
+	            <input id="browse_pic" class="browse_profile_pic hidden" type="file">
+	              <label for="browse_pic">
+	                <span class="profile_preview">
+	                  <img src="./Pacman _ Next Steps_files/KakaoTalk_20160711_091047381.jpg" alt="Sean"> 
+	              </span>
+	              </label>
+	          </form>
+	          <ul class="list-unstyled">
+	            <li>Name: Sean Norton</li>
+	            <li>Email: seannorton0807@gmail.com</li>
+	            <li>Password: <span class="password">************</span> <span class="change_password">change password</span></li>
+	            <li>Program Type: Online Flex</li>
+	            <li>Location: Worldwide</li>
+	            <li>Start Date: October 31, 2016</li>
+	          </ul>
+	        </div>
+	        <form class="change_password_block">
+	          <ul class="list-unstyled">
+	            <li>
+	              <span>Old Password:</span>
+	              <input type="password" class="old_password_input match">
+	            </li>
+	            <li>
+	              <span>New Password:</span>
+	              <input type="password" class="new_password_input match">
+	            </li>
+	            <li>
+	              <span>Confirm New Password:</span>
+	              <input type="password" class="confirm_new_password_input match">
+	            </li>
+	            <li>
+	              <button type="button" class="btn btn-primary save_new_password_button">SAVE</button>
+	            </li>
+	          </ul>
+	        </form>
+	        <p class="modal-messages"></p>
+	      </div>
+	    </div>
+	  </div>    
+	<!-- end of My Account Modal  -->
+
+	<!-- Privacy Policy Modal -->
+	<div class="modal fade privacy_policy_modal" tabindex="-1" role="dialog" data-keyboard="">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<span class="hide_modal glyphicon glyphicon-remove" data-dismiss="modal" aria-label="Close"></span>
+				
+				<div id="terms_of_service">
+					<div class="greetings">
+						<p id="thank_you_greeting">Thank you for taking the time to learn about our legal policies.</p>
+						<p id="greeting">Your privacy is important to us.</p>
+					</div>
+					<div class="links">
+						<p id="privacy_policy">
+							<a href="http://www.codingdojo.com/files/Privacy_Policy.pdf" target="_blank">Privacy Policy</a>
+						</p>
+						<p id="acceptable_use">
+							<a href="http://www.codingdojo.com/files/Acceptable_Use_Policy.pdf" target="_blank">Acceptable Use</a>
+						</p>
+						<p id="site_terms">
+							<a href="http://www.codingdojo.com/files/Site_Terms.pdf" target="_blank">Site Terms</a>
+						</p>
+					</div>
+					<a href="javascript:void(0)" class="btn btn-primary" id="close_button" data-dismiss="modal">CLOSE</a>
+				</div>
+			</div>
+		</div>
+	</div> 
+
+</section>
+
+<!-- Clone Template -->
+<div id="clone_template_container" class="hidden">
+	<ul id="chat_item">
+		<li data-chat-id="" data-module-id="" class="active_chat chat"> 
+		    <input type="checkbox" class="chat_checkbox" id="" checked="checked"> 
+		    <div class="chat_container"> 	
+		        <div class="chat_header"> 
+		            <label for="chat_checkbox_" class="hide_chat"> 
+		                <span class="glyphicon glyphicon-comment"></span> 
+		                <span class="name"></span> 
+		                <span class="glyphicon glyphicon-triangle-bottom"></span> 
+		                <span class="glyphicon glyphicon-remove remove_chat"></span> 
+		            </label> 
+		        </div>  
+		        <div class="chat_body"> 
+		            <div class="settings"> 
+		                <span class="start_this_call glyphicon glyphicon-facetime-video" title="Video call. Click to start a video call."></span>
+		            </div> 
+		            <div class="conversation_container nano has-scrollbar"> 
+		                <ul class="nano-content" tabindex="0" style="right: -17px;"> 
+		                </ul> 
+		            <div class="nano-pane" style="display: none;"><div class="nano-slider" style="height: 20px; transform: translate(0px, 0px);"></div></div></div> 
+		            <div class="hidden_div"></div> 
+		        </div> 
+		        <form class="input_container"> 
+		            <textarea name="" class="form-control enter_message" placeholder="Send a message"></textarea> 
+		            <input type="hidden"> 
+		        </form> 
+		    </div> 
+		</li>
+	</ul>
+
+	<div id="video_walk_through">
+		<a class="how_we_did_video"> 
+	    	<div class="how_we_did_block">
+	        	<div id="video_logo"><img src="./Pacman _ Next Steps_files/play_button.png" alt=""></div> 
+	        	<div class="how_we_did_info"> 
+	            	<span class="title">Wanna see how we did it?</span> 
+	            	<span class="video_time_to_unlock"></span> 
+	        	</div> 
+	    	</div> 
+	     </a>
+	</div>
+
+	<ul id="question_clone">
+		<li class="question"> 
+            <img src="http://learn.codingdojo.com/m/12/3234/19698" alt="profile_picture" class="profile_image"> 
+            <div class="right_question_content"> 
+                <div class="question_block">
+                    <span class="name"></span> 
+                    <span class="date"></span> 
+                    <span class="glyphicon glyphicon-remove pull-right remove_question" id=""></span> 
+                    <p class="main_question"></p> 
+                    <a href="http://learn.codingdojo.com/m/12/3234/19698#" class="add_question_answer" id="">Add answer</a> 
+                    <span class="middle_dot">·</span>
+                    <a href="http://learn.codingdojo.com/m/12/3234/19698#" class="number_of_vote" data-value=""></a> 
+                    <button id="" class="vote_up vote_button" value="1"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button> 
+                    <button id="" class="vote_down vote_button" value="-1"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button> 
+                </div>
+                <form class="list-unstyled create_answer_container" id="post_answer" action="http://learn.codingdojo.com/helps/post_answer" method="post"> 
+                    <img src="http://learn.codingdojo.com/m/12/3234/19698" alt="profile_picture" class="profile_image"> 
+                    <div class="create_answer_form"> 
+                        <input type="hidden" name="authenticity_token" value="KzW4jSRQOqvSm9RLcyEFHt+0N0poyGkHjmOdWi6i8rw=">
+                        <input class="answer_id_input" type="hidden" name="answer[question_id]" value="">
+                        <textarea class="form-control answer_value" name="answer[text_answer]" rows="2" placeholder=""></textarea>
+                        <div class="post_answer_buttons">
+                            <button class="btn btn-default cancel_post_answer">CANCEL</button>
+                            <button class="btn btn-primary post_reply_answer">ANSWER</button>
+                        </div>
+                    </div>
+                </form>
+                <ul class="list-unstyled answers_container">
+                </ul> 
+            </div>
+        </li>
+	</ul>
+
+	<ul id="answer_clone">
+		<li> 
+		    <div class="left_answers_block"> 
+		        <img src="http://learn.codingdojo.com/m/12/3234/19698" alt="profile_picture" class="profile_image"> 
+		    </div> 
+		    <div class="right_answers_block"> 
+		        <span class="name"></span> 
+		        <span class="date"></span> 
+		        <span class="glyphicon glyphicon-remove pull-right remove_answer" id=""></span> 
+		        <p></p> 
+		        <a href="http://learn.codingdojo.com/m/12/3234/19698#" class="number_of_vote" data-value=""></a> 
+		        <button id="" class="vote_up vote_button answer_vote" value="1"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button> 
+		        <button id="" class="vote_down vote_button answer_vote" value="-1"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button> 
+		    </div> 
+		</li>
+	</ul>
+</div>
+
+<!-- Html5 Videos speed Clone -->
+<div class="hidden html5_video_speed_clone">
+	<div class="btn-group" role="group" aria-label="..."> 
+		<button type="button" class="btn btn-default reduce_video_speed"> <span class="glyphicon glyphicon-minus"></span> </button> 
+		<button type="button" class="btn btn-default current_speed">1.0</button>
+		<button type="button" class="btn btn-default add_video_speed"> <span class="glyphicon glyphicon-plus"></span> </button>
+	</div>
+</div>
+
+<div id="page_info">
+	<input type="hidden" value="http://learn.codingdojo.com/m/12/3234/19698">
+	<input type="hidden" value="12">
+	<input type="hidden" value="1103">
+	<input type="hidden" value="3234">
+	<input type="hidden" id="module_id_current" value="19698">
+	<input type="hidden" value="50.165.247.22">
+	<input type="hidden" value="11661" id="page_current_user" user="Sean Norton">
+</div>
+
+<div class="quiz_result_details_block" id="quiz_result_details" style="display: none;">
+	<div class="quiz_result_user_image">
+		<img src="./Pacman _ Next Steps_files/KakaoTalk_20160711_091047381.jpg" alt="Sean" class="profile_image">
+	</div>
+	<div class="quiz_result_info">
+		<h3 id="user_name"></h3>
+		<p id="quiz_date"></p>
+	</div>
+	<div class="clear"></div>
+	<p class="quiz_result_score"></p>
+	<div class="quiz_result_content">
+	</div>
+</div>
+		
+
+
+<script>
+	/* for showing of checklist details in chapter module page */
+
+    var checklist_details = JSON.parse('{"is_optional":0,"day":2,"week":4,"difficulty_level":4,"estimated_time":"4-8 hrs"}');
+
+    if(checklist_details != null){
+    	
+        if(Object.keys(checklist_details).length > 0){
+            var days = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+            var level = ["", "Basic", "Intermediate", "Advanced", "Hacker"];
+            var details_to_append = '<ul class="list-inline information_checklist_list">';
+
+            $.each(checklist_details, function(index, value){
+                switch(index){
+                    case 'is_optional':
+                        status = (value == 1) ? "Optional" : "Mandatory";
+                        details_to_append += '<li>'+status+'</li>';
+                        break;
+                    case 'day':
+                        if(value && checklist_details.week != 0){
+                            details_to_append += "<li>Deadline: "+days[value]+" of Week "+checklist_details.week+"</li>"
+                        }
+                        break;
+                    case 'difficulty_level':
+                        if(value != 0 && value != null)
+                        details_to_append += "<li>Difficulty Level: "+level[value]+"</li>";
+                        break;
+                    case 'estimated_time':
+                        if(value != "" && value != null){
+                            details_to_append += "<li>Estimated Time: "+value+"</li>";
+                        }
+                        break;
+                }
+            });
+
+            details_to_append += "</ul>";
+            $(details_to_append).insertAfter("h2:first");  
+        }
+    }
+</script>
+<script type="text/javascript" src="http://learn.codingdojo.com/m/12/3234/19698"></script>
+
+
+<div role="log" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div></body></html>

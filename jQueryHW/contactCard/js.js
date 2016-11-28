@@ -17,7 +17,7 @@ $(document).ready(function() {
     $('form .biginputbox').val(null)
   })
 
-  $('rightcontent').on('click', 'h1', function() {
+  $('.rightcontent').on('click', 'h1', function() {
     $(this).siblings().toggle("slow");
   })
 })
